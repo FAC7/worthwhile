@@ -1,9 +1,12 @@
 # Worthwhile
 
-# What
+# Who?
+This app is created by @franzmoro, @MyPitit and @oturnermajor from Founders & Coders.
+
+# What?
 This application is an online portal where host organisations and candidates can log in to view relevant information about each other, and logistics for interviews are automated.
 
-# How
+# How?
 
 ##Key features
 ### For hosts 
