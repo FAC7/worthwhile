@@ -8,14 +8,19 @@ This application is an online portal where host organisations and candidates can
 
 # How?
 
-##Key features
+## Key features
+* Candidate View
+* Host View
+* Wothwhile View
+
+## Desired functionality
 ### For hosts 
 +	Information on the process at their fingertips (stage of the process, interview scheduling tool)
 +	Information on the candidates (number of candidates, candidate profiles and CV)
 +	Notifications when new candidates are added
 	
 ### For candidates
-+ Role profiles, and information on organisaitons are available
++ 	Role profiles, and information on organisations are available
 +	Notifications when new roles are added
 
 ### For worthwhile 
