@@ -14,7 +14,7 @@ export default class HostView extends Component {
   }
   render () {
     return (
-      <div>
+      <div className='view'>
         <CollapsibleItem
           text={'Applied'}
           candidates={this.state.candidates}
