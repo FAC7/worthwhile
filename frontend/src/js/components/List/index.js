@@ -1,17 +1,16 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import HostListItem from '../HostListItem'
+import CandidateListItem from '../CandidateListItem'
 
 export default (props) => {
   return (
-    <Navbar className='footer'>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a><img src={props.logoUrl}></img></a>
-        </Navbar.Brand>
-      </Navbar.Header>
-      <Nav pullRight>
-        <p>© FAC7 2016</p>
-      </Nav>
-    </Navbar>
+    <div>
+      <ul>
+      {props.roles
+        ? props.roles.map(role => <HostListItem role={role} changeState={props.changeState} />)
+        : props.candidates.map(candidate => <CandidateListItem candidate={candidate} changeState={props.changeState} />)
+      }
+      </ul>
+    </div>
   )
 }
