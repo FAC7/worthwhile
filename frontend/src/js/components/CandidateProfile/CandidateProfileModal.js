@@ -15,14 +15,6 @@ const CandidateProfileModal = React.createClass ({
     return (
       <div>
 
-        <Button
-          bsStyle='primary'
-          bsSize='large'
-          onClick={this.open}
-        >
-          {this.props.name} profile
-        </Button>
-
         <Modal show={this.props.showModal} onHide={this.close}>
 
           <Modal.Header closeButton>
