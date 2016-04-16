@@ -1,7 +1,7 @@
 export default {
   path: '/{param*}',
   method: 'GET',
-  handler: (response, reply) => {
+  handler: (request, reply) => {
     reply.file('./public/' + 'index.html')
   }
 }
