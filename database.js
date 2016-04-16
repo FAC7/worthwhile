@@ -1,5 +1,6 @@
-const candidates = {
-  'candidateUUID': {
+const candidates = [
+  {
+    'candidateUUID': 'candidateUUID',
     'name': 'Sam Package',
     'email': 'sam.package@welovepackages.com',
     'telephone': '07483849774',
@@ -17,7 +18,7 @@ const candidates = {
     'resumeLink': 'resume.com/resume.doc',
     'description': 'bla bla bla package bla'
   }
-}
+]
 
 const hosts = {
   hostUUID: {
@@ -31,13 +32,14 @@ const hosts = {
   }
 }
 
-const roles = {
-  'role12345': {
+const roles = [
+  {
+    'roleUUID': 'roleUUID1',
     'host': 'hostUUID',
     'description': 'You would be helping us make websites for people',
     'applicants': ['candidateUUID1', 'candidateUUID2', 'candidateUUID3']
   }
-}
+]
 
 module.exports = {
   candidates,
