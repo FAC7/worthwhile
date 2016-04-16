@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import List from '../../components/List'
 import {candidates, roles} from '../../../../../database.js'
-import CandidateProfileModal from '../../components/CandidateProfile/CandidateProfileModal.js'
+import RoleModal from '../../components/RoleModal/role.js'
 
 export default class CandidateView extends Component {
   constructor () {
@@ -16,7 +16,7 @@ export default class CandidateView extends Component {
     return (
       <div>
         <List candidates={this.state.candidates} roles={this.state.candidates} changeState={this.changeState} />
-        <CandidateProfileModal changeState={this.changeState} showModal={this.state.showModal} currentRole={this.state.currentRole}/>
+        <RoleModal changeState={this.changeState} showModal={this.state.showModal} currentRole={this.state.currentRole}/>
       </div>
     )
   }

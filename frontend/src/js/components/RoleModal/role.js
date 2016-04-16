@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Modal} from 'react-bootstrap'
 
-const CandidateProfileModal = React.createClass({
+const Role = React.createClass({
   close () {
     this.props.changeState({ showModal: false })
   },
@@ -36,17 +36,17 @@ const CandidateProfileModal = React.createClass({
 
 })
 
-CandidateProfileModal.propTypes = {
+Role.propTypes = {
   host: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   applicants: React.PropTypes.string.isRequired
 }
 
-CandidateProfileModal.defaultProps = {
+Role.defaultProps = {
   'host': 'hostUUID',
   'description': 'You would be helping us make websites for people',
   'applicants': ['candidateUUID1', 'candidateUUID2', 'candidateUUID3']
 }
 
-export default CandidateProfileModal
+export default Role
 
