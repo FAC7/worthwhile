@@ -1,21 +1,23 @@
-import React from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
+import React, {Component} from 'react'
+import List from '../../components/List'
+import {candidates} from '../../../../../database.js'
+import CandidateProfileModal from '../../components/CandidateProfile/CandidateProfileModal.js'
 
-const styles = {
-  textAlign: 'center',
-  margin: '4em auto'
-}
-const repoLink = 'https://github.com/foundersandcoders'
-
-export default (props) => {
-  return (
-    <Grid style={styles}>
-      <Row>
-        <Col xs={12}>
-          <h3>Get in touch via our repo!</h3>
-          <a href={repoLink} target='_blank'>Your repo link</a>
-        </Col>
-      </Row>
-    </Grid>
-  )
+export default class HostView extends Component {
+  constructor () {
+    super()
+    this.state = {candidates, showModal: false, currCandidate: null}
+    this.changeState = this.changeState.bind(this)
+  }
+  changeState (state) {
+    this.setState(state)
+  }
+  render () {
+    return (
+      <div>
+        <List candidates={this.state.candidates} changeState={this.changeState} />
+        <CandidateProfileModal />
+      </div>
+    )
+  }
 }
