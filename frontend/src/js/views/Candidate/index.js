@@ -3,10 +3,12 @@ import {candidates, roles} from '../../../../../database.js'
 import RoleModal from '../../components/RoleModal/role.js'
 import CollapsibleItem from '../../components/CollapsibleItem/index.js'
 
+const loggedInCandidateID = 'candidateUUID1'
+
 export default class CandidateView extends Component {
   constructor () {
     super()
-    this.state = {roles, candidates, showModal: false, currentRole: null}
+    this.state = {roles, candidates, showModal: false, currentRole: null, loggedInCandidateID}
     this.changeState = this.changeState.bind(this)
   }
   changeState (state) {
