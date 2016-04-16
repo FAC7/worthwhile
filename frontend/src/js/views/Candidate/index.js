@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {candidates, roles} from '../../../../../database.js'
-import CandidateProfileModal from '../../components/CandidateProfile/CandidateProfileModal.js'
+import RoleModal from '../../components/RoleModal/role.js'
 import CollapsibleItem from '../../components/CollapsibleItem/index.js'
 
 export default class CandidateView extends Component {
@@ -27,7 +27,7 @@ export default class CandidateView extends Component {
           changeState={this.changeState}
           filterFunction={role => role}
         />
-        <CandidateProfileModal
+        <RoleModal
           changeState={this.changeState}
           showModal={this.state.showModal}
           currentRole={this.state.currentRole}
