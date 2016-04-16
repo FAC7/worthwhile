@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import CollapsibleItem from '../../components/CollapsibleItem'
+import CollapsibleItem from '../../components/CollapsibleItem/index.js'
 import {candidates} from '../../../../../database.js'
 import CandidateProfileModal from '../../components/CandidateProfile/CandidateProfileModal.js'
 
@@ -19,21 +19,25 @@ export default class HostView extends Component {
           text={'Applied'}
           candidates={this.state.candidates}
           changeState={this.changeState}
-          filterFunction={() => {}}
+          filterFunction={candidate => candidate}
         />
         <CollapsibleItem
           text={'Interviewed'}
           candidates={this.state.candidates}
           changeState={this.changeState}
-          filterFunction={() => {}}
+          filterFunction={candidate => candidate}
         />
         <CollapsibleItem
           text={'Accepted'}
           candidates={this.state.candidates}
           changeState={this.changeState}
-          filterFunction={() => {}}
+          filterFunction={candidate => candidate}
         />
-        <CandidateProfileModal />
+        <CandidateProfileModal
+          changeState={this.changeState}
+          showModal={this.state.showModal}
+          currCandidate={this.state.currCandidate}
+        />
       </div>
     )
   }
