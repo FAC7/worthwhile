@@ -10,9 +10,15 @@ export default class CandidateView extends Component {
     super()
     this.state = {roles, candidates, showModal: false, currentRole: null, loggedInCandidateID}
     this.changeState = this.changeState.bind(this)
+    this.checkIfAppliedTo = this.checkIfAppliedTo.bind(this)
   }
   changeState (state) {
     this.setState(state)
+  }
+  checkIfAppliedTo (role) {
+    return role.applicants.filter((candidate) => {
+      return candidate === this.state.loggedInCandidateID
+    }).length > 0
   }
   render () {
     return (
@@ -21,13 +27,13 @@ export default class CandidateView extends Component {
           text={'Open Roles'}
           roles={this.state.roles}
           changeState={this.changeState}
-          filterFunction={role => role}
+          filterFunction={role => !this.checkIfAppliedTo(role)}
         />
         <CollapsibleItem
           text={'Applied To'}
           roles={this.state.roles}
           changeState={this.changeState}
-          filterFunction={role => role}
+          filterFunction={role => this.checkIfAppliedTo(role)}
         />
         <RoleModal
           changeState={this.changeState}
