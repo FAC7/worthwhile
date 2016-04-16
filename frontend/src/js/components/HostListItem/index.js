@@ -1,17 +1,14 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 
 export default (props) => {
+  const seeMore = () => {
+    props.changeState({
+      showModal: true,
+      currCandidate: props.candidate
+    })
+  }
   return (
-    <Navbar className='footer'>
-      <Navbar.Header>
-        <Navbar.Brand>
-          <a><img src={props.logoUrl}></img></a>
-        </Navbar.Brand>
-      </Navbar.Header>
-      <Nav pullRight>
-        <p>© FAC7 2016</p>
-      </Nav>
-    </Navbar>
+    <li style={props.liStyle}>{props.role.roleTitle} <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button></li>
   )
 }
