@@ -1,0 +1,234 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.1
+-- Dumped by pg_dump version 9.5.1
+
+-- Started on 2016-04-16 18:48:56 BST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2387 (class 1262 OID 12641)
+-- Dependencies: 2386
+-- Name: postgres; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE postgres IS 'default administrative connection database';
+
+
+--
+-- TOC entry 2 (class 3079 OID 12623)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2390 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 1 (class 3079 OID 16384)
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2391 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 182 (class 1259 OID 16405)
+-- Name: candidates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE candidates (
+    first_name character varying,
+    last_name character varying,
+    email character varying,
+    institution character varying,
+    qualification character varying,
+    degree character varying,
+    availability character varying,
+    cv_link character varying,
+    uuid character varying NOT NULL,
+    telephone character varying
+);
+
+
+ALTER TABLE candidates OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 16421)
+-- Name: matched_roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE matched_roles (
+    "roleID" character varying NOT NULL,
+    "candidateID" character varying NOT NULL,
+    status character varying
+);
+
+
+ALTER TABLE matched_roles OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 16415)
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE roles (
+    uuid character varying NOT NULL,
+    organisation character varying,
+    location character varying,
+    start_date character varying,
+    length character varying,
+    about_org character varying,
+    about_role character varying,
+    salary character varying
+);
+
+
+ALTER TABLE roles OWNER TO postgres;
+
+--
+-- TOC entry 2379 (class 0 OID 16405)
+-- Dependencies: 182
+-- Data for Name: candidates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO candidates VALUES ('Jon', 'Whitehead', 'jon.whitehead@studenthubs.org.uk', 'SOAS', 'MA', 'Cultural Studies', 'September Onwards', 'https://storage.googleapis.com/k75m5pg17z/uf5qTvXLmA2D7J8oB', '98', '123456789');
+INSERT INTO candidates VALUES ('Laura', 'Harrission', 'laura@worthwhile.org.uk', 'Durham University ', 'BA', 'Combined Honours in Social Sciences (History & Politics)', 'July Onwards', 'https://storage.googleapis.com/k75m5pg17z/CJqWG7jiY9gGK4MLr', '56', '987654321');
+INSERT INTO candidates VALUES ('Robbie', 'Semple', 'robbie@worthwhile.org.uk', 'Durham University', 'BA', 'Anthropology', 'July Onwards', 'https://storage.googleapis.com/k75m5pg17z/HGb92ohgRB9aAGL4h', '38', '7506287818');
+INSERT INTO candidates VALUES ('Jessica', 'brady', 'jon.whitehead@studenthubs.org.uk', 'University of Bristol', 'BA', 'History', 'August Onwards', 'https://storage.googleapis.com/k75m5pg17z/qE6PEXTGxNmf4EP5X', '87', '78050157');
+INSERT INTO candidates VALUES ('Susanna', 'colman', 'laura@worthwhile.org.uk', 'University of Southampton ', 'BA', 'History', 'June Onwards', 'https://storage.googleapis.com/k75m5pg17z/a22gctBFYHPY4mp6P', '14', '78457758');
+INSERT INTO candidates VALUES ('Katie', 'duffy', 'robbie@worthwhile.org.uk', 'University of Southampton ', 'Law LLB', 'LLB Second year module break down', 'September Onwards', 'https://storage.googleapis.com/k75m5pg17z/h72HxLHukNH5taM48', '15', '74158444');
+INSERT INTO candidates VALUES ('Anna', 'fanning', 'jon.whitehead@studenthubs.org.uk', 'University of Cambridge', 'BA', 'Theology and Religious Studies', 'July Onwards', 'https://storage.googleapis.com/k75m5pg17z/EXJhYDXjmEhYfuLif', '13', '79849104');
+INSERT INTO candidates VALUES ('James', 'galligan', 'laura@worthwhile.org.uk', 'The University of Sheffield', 'BA', 'International Relations and Politics', 'July Onwards', 'https://storage.googleapis.com/k75m5pg17z/4hvY8jLHry2BN8edv', '51', '78047760');
+INSERT INTO candidates VALUES ('Anna', 'hoey', 'robbie@worthwhile.org.uk', 'University of St Andrews', ' MA (hons)', 'Social Anthropology', 'April Onwards', 'https://storage.googleapis.com/k75m5pg17z/33tSxqcaMiMG5zaN7', '88', '75834147');
+INSERT INTO candidates VALUES ('James', 'kelly', 'jon.whitehead@studenthubs.org.uk', 'University of Oxford', 'BA', 'Experimental Psychology', 'September Onwards', 'https://storage.googleapis.com/k75m5pg17z/WGc8stft6jBZyDzPp', '44', '79293517');
+
+
+--
+-- TOC entry 2381 (class 0 OID 16421)
+-- Dependencies: 184
+-- Data for Name: matched_roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO matched_roles VALUES ('1', '98', 'applied');
+INSERT INTO matched_roles VALUES ('1', '56', 'applied');
+INSERT INTO matched_roles VALUES ('1', '38', 'accepted');
+INSERT INTO matched_roles VALUES ('2', '98', 'applied');
+INSERT INTO matched_roles VALUES ('2', '56', 'accepted');
+INSERT INTO matched_roles VALUES ('2', '38', 'applied');
+INSERT INTO matched_roles VALUES ('3', '98', 'applied');
+INSERT INTO matched_roles VALUES ('3', '56', 'applied');
+INSERT INTO matched_roles VALUES ('3', '38', 'applied');
+
+
+--
+-- TOC entry 2380 (class 0 OID 16415)
+-- Dependencies: 183
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO roles VALUES ('1', 'Worthwhile', 'London', '1/4/2016', '12 months', 'text paragraph here', 'another text paragraph here', 'London Living Wage');
+INSERT INTO roles VALUES ('2', 'Student Hubs ', 'Oxford', '1/9/2016', '12 months', 'text paragraph here', 'another text paragraph here', 'Living Wage');
+INSERT INTO roles VALUES ('3', 'Student Minds', 'Oxford', '1/9/2016', '9 months', 'text paragraph here', 'another text paragraph here', 'Living Wage');
+INSERT INTO roles VALUES ('4', 'GWRC', 'Bristol', '1/9/2016', '12 months', 'text paragraph here', 'another text paragraph here', '£22,000');
+INSERT INTO roles VALUES ('5', 'Oomph', 'London', '12/8/2016', '12 months', 'text paragraph here', 'another text paragraph here', 'London Living Wage');
+INSERT INTO roles VALUES ('6', 'Oomph', 'London', '12-Aug', 'permanent', 'text paragraph here', 'another text paragraph here', 'London Living Wage');
+INSERT INTO roles VALUES ('7', 'Challenge Partners', 'London', '8/7/2016', '10 months', 'text paragraph here', 'another text paragraph here', 'Living Wage');
+INSERT INTO roles VALUES ('8', 'Student Hubs ', 'Southampton', '1/9/2016', '12 months', 'text paragraph here', 'another text paragraph here', 'Living Wage');
+
+
+--
+-- TOC entry 2258 (class 2606 OID 16432)
+-- Name: candidates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY candidates
+    ADD CONSTRAINT candidates_pkey PRIMARY KEY (uuid);
+
+
+--
+-- TOC entry 2262 (class 2606 OID 16434)
+-- Name: matched_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matched_roles
+    ADD CONSTRAINT matched_roles_pkey PRIMARY KEY ("roleID", "candidateID");
+
+
+--
+-- TOC entry 2260 (class 2606 OID 16430)
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (uuid);
+
+
+--
+-- TOC entry 2263 (class 2606 OID 16435)
+-- Name: matched_roles_candidateID_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matched_roles
+    ADD CONSTRAINT "matched_roles_candidateID_fkey" FOREIGN KEY ("candidateID") REFERENCES candidates(uuid);
+
+
+--
+-- TOC entry 2264 (class 2606 OID 16440)
+-- Name: matched_roles_roleID_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY matched_roles
+    ADD CONSTRAINT "matched_roles_roleID_fkey" FOREIGN KEY ("roleID") REFERENCES roles(uuid);
+
+
+--
+-- TOC entry 2389 (class 0 OID 0)
+-- Dependencies: 7
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-04-16 18:48:56 BST
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -14,10 +14,13 @@ import Inert from 'inert'
 import Images from './routes/Images.js'
 import ReactUrls from './routes/ReactUrls.js'
 import Scripts from './routes/Scripts.js'
+import GetAllRoles from './routes/GetAllRoles.js'
+import GetCandidatesByRole from './routes/GetCandidatesByRole.js'
+import GetRolesByCandidate from './routes/GetRolesByCandidate.js'
 
 const ConnectionSettings = { port, routes: {cors: true} }
 const Plugins = [ Inert ]
-const Routes = [ Images, ReactUrls, Scripts ]
+const Routes = [ GetRolesByCandidate, GetCandidatesByRole, GetAllRoles, Images, ReactUrls, Scripts ]
 
 server.connection(ConnectionSettings)
 server.register(Plugins, handlePlugins)
