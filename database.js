@@ -35,6 +35,7 @@ const hosts = {
 const roles = [
   {
     'roleUUID': 'roleUUID1',
+    'roleTitle': 'Web Developer',
     'host': 'hostUUID',
     'description': 'You would be helping us make websites for people',
     'applicants': ['candidateUUID1', 'candidateUUID2', 'candidateUUID3']
