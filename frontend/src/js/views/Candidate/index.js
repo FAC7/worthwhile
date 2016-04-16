@@ -6,7 +6,7 @@ import CandidateProfileModal from '../../components/CandidateProfile/CandidatePr
 export default class CandidateView extends Component {
   constructor () {
     super()
-    this.state = {roles, candidates, showModal: false}
+    this.state = {roles, candidates, showModal: false, currentRole: null}
     this.changeState = this.changeState.bind(this)
   }
   changeState (state) {
@@ -16,7 +16,7 @@ export default class CandidateView extends Component {
     return (
       <div>
         <List candidates={this.state.candidates} roles={this.state.candidates} changeState={this.changeState} />
-        <CandidateProfileModal />
+        <CandidateProfileModal changeState={this.changeState} showModal={this.state.showModal} currentRole={this.state.currentRole}/>
       </div>
     )
   }
