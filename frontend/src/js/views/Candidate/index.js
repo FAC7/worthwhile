@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import List from '../../components/List'
 import {candidates, roles} from '../../../../../database.js'
 import RoleModal from '../../components/RoleModal/role.js'
+import CollapsibleItem from '../../components/CollapsibleItem/index.js'
 
 export default class CandidateView extends Component {
   constructor () {
@@ -14,9 +14,24 @@ export default class CandidateView extends Component {
   }
   render () {
     return (
-      <div>
-        <List candidates={this.state.candidates} roles={this.state.candidates} changeState={this.changeState} />
-        <RoleModal changeState={this.changeState} showModal={this.state.showModal} currentRole={this.state.currentRole}/>
+      <div className='view'>
+        <CollapsibleItem
+          text={'Open Roles'}
+          roles={this.state.roles}
+          changeState={this.changeState}
+          filterFunction={role => role}
+        />
+        <CollapsibleItem
+          text={'Applied To'}
+          roles={this.state.roles}
+          changeState={this.changeState}
+          filterFunction={role => role}
+        />
+        <RoleModal
+          changeState={this.changeState}
+          showModal={this.state.showModal}
+          currentRole={this.state.currentRole}
+        />
       </div>
     )
   }

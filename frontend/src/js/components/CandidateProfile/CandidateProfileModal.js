@@ -62,4 +62,3 @@ CandidateProfileModal.defaultProps = {
 }
 
 export default CandidateProfileModal
-
