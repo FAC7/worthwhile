@@ -16,7 +16,7 @@ export default class HostView extends Component {
     return (
       <div>
         <List candidates={this.state.candidates} changeState={this.changeState} />
-        <CandidateProfileModal />
+        <CandidateProfileModal changeState={this.changeState} showModal={this.state.showModal} currCandidate={this.state.currCandidate}/>
       </div>
     )
   }
