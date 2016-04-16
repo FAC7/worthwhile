@@ -1,17 +1,16 @@
 import React from 'react'
 import {Button, Modal} from 'react-bootstrap'
 
-const CandidateProfileModal = React.createClass ({
-  close() {
-    this.props.changeState({ showModal: false });
+const CandidateProfileModal = React.createClass({
+  close () {
+    this.props.changeState({ showModal: false })
   },
 
-  open() {
-    this.props.changeState({ showModal: true });
+  open () {
+    this.props.changeState({ showModal: true })
   },
 
-  render() {
-
+  render () {
     return (
       <div>
 
@@ -29,9 +28,7 @@ const CandidateProfileModal = React.createClass ({
             <p>Degree: {this.props.Degree}</p>
             <p>Click here to see the {this.props.name} CV: {this.props.resumeLink}</p>
             <p>Description: {this.props.description}</p>
-
-           </Modal.Body>
-
+          </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
           </Modal.Footer>

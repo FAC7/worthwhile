@@ -9,6 +9,6 @@ export default (props) => {
     })
   }
   return (
-    <li>{props.candidate.name} <Button bsStyle="primary" onClick={seeMore}>SEE MORE</Button></li>
+    <li>{props.candidate.name} <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button></li>
   )
 }
