@@ -6,7 +6,7 @@ import '../../scss/style.scss'
 
 const options = {
   menuItems: ['about', 'contact'],
-  logoUrl: 'img/rhino.png'
+  logoUrl: 'img/whiteLogo.png'
 }
 
 export default class App extends React.Component {
