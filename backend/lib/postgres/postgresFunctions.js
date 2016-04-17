@@ -17,7 +17,7 @@ const getCandidatesByRole = (roleID, cb) => {
   pg.connect(connectionString, (err, client, done) => {
     if (err) throw err
     client.query('SELECT uuid, first_name, last_name, email, institution, ' +
-      'qualification, degree, availability, cv_link, telephone ' +
+      'qualification, degree, availability, cv_link, telephone, status ' +
       'FROM candidates, matched_roles ' +
       'WHERE candidates.uuid = matched_roles."candidateID" ' +
       'AND matched_roles."roleID" = $1', [roleID], (err, result) => {
