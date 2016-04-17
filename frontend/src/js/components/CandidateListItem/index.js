@@ -2,12 +2,13 @@ import React from 'react'
 import {Button} from 'react-bootstrap'
 
 export default (props) => {
-  const seeMore = () => {
+  const seeMore = (candidate) => {
     props.changeState({
-      showModal: true
+      showModal: true,
+      currCandidate: candidate
     })
   }
   return (
-    <li style={props.liStyle}>{props.candidate.name} <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button></li>
+    <li style={props.liStyle}>{props.candidate.name} <Button bsStyle='primary' onClick={() => {seeMore(props.candidate) }}>SEE MORE</Button></li>
   )
 }

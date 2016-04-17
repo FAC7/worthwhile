@@ -8,22 +8,26 @@ const loggedInRoleID = '2'
 export default class HostView extends Component {
   constructor () {
     super()
-    this.state = {candidates, showModal: false, currCandidate: null, loggedInRoleID}
+    this.state = {candidates, showModal: false, loggedInRoleID}
     this.changeState = this.changeState.bind(this)
+    this.getState = this.getState.bind(this)
   }
   componentDidMount () {
     let xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.onreadystatechange = () => {
-      console.log('sending request')
       if (xhr.status === 200 && xhr.readyState === 4) {
-        console.log('here\'s the response text!', JSON.parse(xhr.responseText))
+        console.log('response', JSON.parse(xhr.responseText))
+        this.setState({candidates: JSON.parse(xhr.responseText)})
       }
     }
-    xhr.open('GET', `/getCandidatesByRole/${this.state.currentRole}`)
+    xhr.open('GET', `/getCandidatesByRole/${this.state.loggedInRoleID}`)
     xhr.send()
   }
   changeState (state) {
     this.setState(state)
+  }
+  getState () {
+    return this.state
   }
   render () {
     return (
@@ -32,18 +36,21 @@ export default class HostView extends Component {
           text={'Applied'}
           candidates={this.state.candidates}
           changeState={this.changeState}
+          getState={this.getState}
           filterFunction={candidate => candidate}
         />
         <CollapsibleItem
           text={'Interviewed'}
           candidates={this.state.candidates}
           changeState={this.changeState}
+          getState={this.getState}
           filterFunction={candidate => candidate}
         />
         <CollapsibleItem
           text={'Accepted'}
           candidates={this.state.candidates}
           changeState={this.changeState}
+          getState={this.getState}
           filterFunction={candidate => candidate}
         />
         <CandidateProfileModal

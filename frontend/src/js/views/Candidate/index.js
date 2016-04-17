@@ -17,7 +17,7 @@ export default class CandidateView extends Component {
     xhr.onreadystatechange = () => {
       console.log('sending request')
       if (xhr.status === 200 && xhr.readyState === 4) {
-        console.log('here\'s the response text!', JSON.parse(xhr.responseText))
+        this.setState({roles: JSON.parse(xhr.responseText)})
       }
     }
     xhr.open('GET', `/getRolesByCandidate/${this.state.loggedInCandidateID}`)
