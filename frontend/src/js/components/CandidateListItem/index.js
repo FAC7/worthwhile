@@ -24,9 +24,10 @@ export default (props) => {
       ...props.candidate,
       status
     }
+    console.log(thisCandidate)
     const oldState = props.getState()
     const filteredCandidates = oldState.candidates.filter((candidate) => {
-      candidate.uuid !== candidateID
+      return candidate.uuid !== candidateID
     })
     const newCandidates = [...filteredCandidates, thisCandidate]
 
@@ -40,18 +41,18 @@ export default (props) => {
 
   const name = `${props.candidate.first_name} ${props.candidate.last_name}`
 
-  return ( 
-    <li style={props.liStyle} key={props.candidate.candidateUUID}>>
+  return (
+    <li style={props.liStyle} key={props.candidate.candidateUUID}>
       <Row>
         <Col md={3}>{name}</Col>
         <Col md={2}>
           <Button
             bsStyle='primary'
-            onClick={() => seeMore(props.candidate) }>SEE MORE
+            onClick={() => seeMore(props.candidate)}>SEE MORE
           </Button>
         </Col>
         <Col md={2}>
-          <DropdownButton 
+          <DropdownButton
             title={props.candidate.status}
             id='dropdown-size-large'
             onSelect={(e, eventKey) => {

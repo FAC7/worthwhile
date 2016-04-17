@@ -6,10 +6,10 @@ export default (props) => {
   return (
     <ul style={ulStyle}>
       {props.type === 'roles'
-        ? props.roles.filter(role => props.filterFunction(role))
-          .map(role => <HostListItem role={role} changeState={props.changeState} liStyle={liStyle}/>)
-        : props.candidates.filter(candidate => props.filterFunction(candidate))
-          .map(candidate => <CandidateListItem candidate={candidate} changeState={props.changeState} liStyle={liStyle} />)
+        ? props.roles.filter((role) => props.filterFunction(role))
+          .map((role) => <HostListItem role={role} getState={props.getState} changeState={props.changeState} liStyle={liStyle}/>)
+        : props.candidates.filter((candidate) => props.filterFunction(candidate))
+          .map((candidate) => <CandidateListItem candidate={candidate} changeState={props.changeState} getState={props.getState} liStyle={liStyle} />)
       }
     </ul>
   )
