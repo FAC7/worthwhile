@@ -35,7 +35,7 @@ export default (props) => {
       candidates: newCandidates
     }
     console.log(newState)
-    this.changeState(newState)
+    props.changeState(newState)
   }
 
   const name = `${props.candidate.first_name} ${props.candidate.last_name}`
@@ -43,19 +43,22 @@ export default (props) => {
   return (
     <li style={props.liStyle} key={props.candidate.candidateUUID}>
       {name}
-      <Button bsStyle='primary' onClick={() => {seeMore(props.candidate) }}>SEE MORE</Button>
-      <DropdownButton title={props.candidate.status} id='dropdown-size-large'>
+      <Button bsStyle='primary' onClick={() => { seeMore(props.candidate) }}>SEE MORE</Button>
+      <DropdownButton 
+        title={props.candidate.status}
+        id='dropdown-size-large'
+        onSelect={(e, eventKey) => {
+          e.preventDefault()
+          updateCandidateProgress('2', props.candidate.uuid, eventKey)
+        }}>
         <MenuItem
-          eventKey='2'
-          onClick={() => { updateCandidateProgress(props.roleID, props.candidate.candidateUUID, 'applied') }}
+          eventKey='applied'
           >Applied</MenuItem>
         <MenuItem
-          eventKey='1'
-          onClick={() => { updateCandidateProgress(props.roleID, props.candidate.candidateUUID, 'interviewed') }}
+          eventKey='interviewed'
           >Interviewed</MenuItem>
         <MenuItem
-          eventKey='2'
-          onClick={() => { updateCandidateProgress(props.roleID, props.candidate.candidateUUID, 'accepted') }}
+          eventKey='accepted'
           >Accepted</MenuItem>
       </DropdownButton>
     </li>
