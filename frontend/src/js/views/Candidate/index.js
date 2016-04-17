@@ -31,27 +31,29 @@ export default class CandidateView extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={12}>
-            <ul style={ulStyle}>
-              <CollapsibleItem
-                text={'Open Roles'}
-                roles={this.state.roles}
-                changeState={this.changeState}
-                filterFunction={(role) => !this.checkIfAppliedTo(role)}
-              />
-              <CollapsibleItem
-                text={'Applied To'}
-                roles={this.state.roles}
-                changeState={this.changeState}
-                filterFunction={(role) => this.checkIfAppliedTo(role)}
-              />
-              <RoleModal
-                changeState={this.changeState}
-                showModal={this.state.showModal}
-                currentRole={this.state.currentRole}
-              />
-            </ul>
-          </Col>
+          <div className='collapseBox'>
+            <Col md={12}>
+              <ul style={ulStyle}>
+                <CollapsibleItem
+                  text={'Open Roles'}
+                  roles={this.state.roles}
+                  changeState={this.changeState}
+                  filterFunction={(role) => !this.checkIfAppliedTo(role)}
+                />
+                <CollapsibleItem
+                  text={'Applied To'}
+                  roles={this.state.roles}
+                  changeState={this.changeState}
+                  filterFunction={(role) => this.checkIfAppliedTo(role)}
+                />
+                <RoleModal
+                  changeState={this.changeState}
+                  showModal={this.state.showModal}
+                  currentRole={this.state.currentRole}
+                />
+              </ul>
+            </Col>
+          </div>
         </Row>
       </Grid>
     )
