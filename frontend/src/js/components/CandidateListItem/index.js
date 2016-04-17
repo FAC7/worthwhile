@@ -8,6 +8,8 @@ export default (props) => {
     })
   }
   return (
-    <li style={props.liStyle}>{props.candidate.name} <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button></li>
+    <li style={props.liStyle} key={props.candidate.candidateUUID}>
+      {props.candidate.name} <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button>
+    </li>
   )
 }
