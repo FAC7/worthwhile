@@ -2,9 +2,10 @@ import React from 'react'
 import {Button, MenuItem, DropdownButton} from 'react-bootstrap'
 
 export default (props) => {
-  const seeMore = () => {
+  const seeMore = (candidate) => {
     props.changeState({
-      showModal: true
+      showModal: true,
+      currCandidate: candidate
     })
   }
 
@@ -16,6 +17,7 @@ export default (props) => {
       }
     }
     xhr.open('GET', `/updateCandidateProgress/${roleID}/${candidateID}/${status}`)
+    console.log('sending update request')
     xhr.send()
 
     const thisCandidate = {
@@ -32,12 +34,16 @@ export default (props) => {
       ...oldState,
       candidates: newCandidates
     }
+    console.log(newState)
     this.changeState(newState)
   }
+
+  const name = `${props.candidate.first_name} ${props.candidate.last_name}`
+
   return (
     <li style={props.liStyle} key={props.candidate.candidateUUID}>
-      {props.candidate.name}
-      <Button bsStyle='primary' onClick={seeMore}>Details</Button>
+      {name}
+      <Button bsStyle='primary' onClick={() => {seeMore(props.candidate) }}>SEE MORE</Button>
       <DropdownButton title={props.candidate.status} id='dropdown-size-large'>
         <MenuItem
           eventKey='2'

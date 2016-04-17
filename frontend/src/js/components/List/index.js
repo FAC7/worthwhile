@@ -1,12 +1,11 @@
 import React from 'react'
 import HostListItem from '../HostListItem'
 import CandidateListItem from '../CandidateListItem'
-import { Button } from 'react-bootstrap'
 
 export default (props) => {
   return (
     <ul style={ulStyle}>
-      {props.roles
+      {props.type === 'roles'
         ? props.roles.filter(role => props.filterFunction(role))
           .map(role => <HostListItem role={role} changeState={props.changeState} liStyle={liStyle}/>)
         : props.candidates.filter(candidate => props.filterFunction(candidate))
@@ -17,7 +16,6 @@ export default (props) => {
 }
 
 const ulStyle = {
-  backgroundColor: '#03A9F4',
   padding: '2em',
   borderRadius: '10px',
   color: 'white',
@@ -26,7 +24,7 @@ const ulStyle = {
 
 const liStyle = {
   listStyleType: 'none',
-  color: 'white',
+  color: 'black',
   fontSize: '1.7em',
   textDecoration: 'none',
   cursor: 'pointer'
