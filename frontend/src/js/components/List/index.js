@@ -3,18 +3,16 @@ import HostListItem from '../HostListItem'
 import CandidateListItem from '../CandidateListItem'
 import { Button } from 'react-bootstrap'
 
-
-
 export default (props) => {
   return (
-    <li style={this.props.style}>
+    <ul style={ulStyle}>
       {props.roles
         ? props.roles.filter(role => props.filterFunction(role))
           .map(role => <HostListItem role={role} changeState={props.changeState} liStyle={liStyle}/>)
         : props.candidates.filter(candidate => props.filterFunction(candidate))
           .map(candidate => <CandidateListItem candidate={candidate} changeState={props.changeState} liStyle={liStyle} />)
       }
-    </li>
+    </ul>
   )
 }
 
