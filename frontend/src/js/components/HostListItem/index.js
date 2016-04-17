@@ -9,6 +9,16 @@ export default (props) => {
     })
   }
   return (
-    <li style={props.liStyle}>{props.role.roleTitle} <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button></li>
+    <li style={props.liStyle} key={props.role.roleUUID}>
+      {props.role.roleTitle}
+      <Button bsStyle='primary' onClick={seeMore}>SEE MORE</Button>
+      {true // IF APPLIED LOGIC HERE!!
+        ? <Button bsStyle='primary' onClick={() => console.log('application successfull!')
+            // db call, then-->
+            // props.changeState({roles:dbResult})
+          }>APPLY</Button>
+        : <div>APPLIED</div>
+      }
+    </li>
   )
 }

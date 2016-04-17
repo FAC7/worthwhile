@@ -1,20 +1,22 @@
 const candidates = [
   {
-    'candidateUUID': 'candidateUUID',
+    'candidateUUID': 'candidateUUID1',
     'name': 'Sam Package',
     'email': 'sam.package@welovepackages.com',
     'telephone': '07483849774',
     'University': 'Bristol',
     'Degree': 'Packages',
-    'rolesAppliedFor': [{
-      'organisation': 'Host1',
-      'role': 'package examiner',
-      'status': '1st round interview'
-    }, {
-      'organisation': 'Host1',
-      'role': 'package examiner',
-      'status': '1st round interview'
-    }],
+    'rolesAppliedFor': ['roleUUID1'],
+    'resumeLink': 'resume.com/resume.doc',
+    'description': 'bla bla bla package bla'
+  }, {
+    'candidateUUID': 'candidateUUID2',
+    'name': 'Graduate 1',
+    'email': 'hello.graduates@wegraduates.com',
+    'telephone': '07483849774',
+    'University': 'Bristol',
+    'Degree': 'saying hi',
+    'rolesAppliedFor': ['roleUUID2'],
     'resumeLink': 'resume.com/resume.doc',
     'description': 'bla bla bla package bla'
   }
@@ -38,7 +40,7 @@ const roles = [
     'roleTitle': 'Web Developer',
     'host': 'hostUUID',
     'description': 'You would be helping us make websites for people',
-    'applicants': ['candidateUUID1', 'candidateUUID2', 'candidateUUID3']
+    'applicants': ['candidateUUID1', 'candidateUUID3']
   }
 ]
 
