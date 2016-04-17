@@ -8,7 +8,7 @@ const getAllRoles = (cb) => {
     client.query('SELECT * FROM roles', (err, result) => {
       if (err) throw err
       cb(result.rows)
-      done() // client idles for 30 seconds before closing
+      done()
     })
   })
 }
@@ -16,22 +16,29 @@ const getAllRoles = (cb) => {
 const getCandidatesByRole = (roleID, cb) => {
   pg.connect(connectionString, (err, client, done) => {
     if (err) throw err
-    client.query('SELECT * FROM matched_roles WHERE "roleID" = $1', [roleID], (err, result) => {
-      if (err) throw err
-      cb(result.rows)
-      done() // client idles for 30 seconds before closing
-    })
+    client.query('SELECT uuid, first_name, last_name, email, institution, ' +
+      'qualification, degree, availability, cv_link, telephone ' +
+      'FROM candidates, matched_roles ' +
+      'WHERE candidates.uuid = matched_roles."candidateID" ' +
+      'AND matched_roles."roleID" = $1', [roleID], (err, result) => {
+        if (err) throw err
+        cb(result.rows)
+        done()
+      })
   })
 }
 
 const getRolesByCandidate = (candidateID, cb) => {
   pg.connect(connectionString, (err, client, done) => {
     if (err) throw err
-    client.query('SELECT * FROM matched_roles WHERE "candidateID" = $1', [candidateID], (err, result) => {
-      if (err) throw err
-      cb(result.rows)
-      done() // client idles for 30 seconds before closing
-    })
+    client.query('SELECT uuid, organisation, location, start_date, length, ' +
+      'about_org, about_role, status FROM roles, matched_roles ' +
+      'WHERE roles.uuid = matched_roles."roleID" ' +
+      'AND matched_roles."candidateID" = $1', [candidateID], (err, result) => {
+        if (err) throw err
+        cb(result.rows)
+        done()
+      })
   })
 }
 
