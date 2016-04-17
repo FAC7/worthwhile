@@ -3,7 +3,7 @@ import {candidates, roles} from '../../../../../database.js'
 import RoleModal from '../../components/RoleModal/role.js'
 import CollapsibleItem from '../../components/CollapsibleItem/index.js'
 
-const loggedInCandidateID = 'candidateUUID1'
+const loggedInCandidateID = '98'
 
 export default class CandidateView extends Component {
   constructor () {
@@ -11,6 +11,17 @@ export default class CandidateView extends Component {
     this.state = {roles, candidates, showModal: false, currentRole: null, loggedInCandidateID}
     this.changeState = this.changeState.bind(this)
     this.checkIfAppliedTo = this.checkIfAppliedTo.bind(this)
+  }
+  componentDidMount () {
+    let xhr = new XMLHttpRequest() // eslint-disable-line
+    xhr.onreadystatechange = () => {
+      console.log('sending request')
+      if (xhr.status === 200 && xhr.readyState === 4) {
+        console.log('here\'s the response text!', JSON.parse(xhr.responseText))
+      }
+    }
+    xhr.open('GET', `/getRolesByCandidate/${this.state.loggedInCandidateID}`)
+    xhr.send()
   }
   changeState (state) {
     this.setState(state)
