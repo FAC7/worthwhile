@@ -1,6 +1,6 @@
 const candidates = [
   {
-    'candidateUUID': 'candidateUUID',
+    'candidateUUID': 'candidateUUID1',
     'name': 'Sam Package',
     'email': 'sam.package@welovepackages.com',
     'telephone': '07483849774',
