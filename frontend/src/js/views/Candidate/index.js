@@ -7,7 +7,7 @@ import {Grid, Row, Col} from 'react-bootstrap'
 const loggedInCandidateID = 'candidateUUID1'
 
 const ulStyle = {
-  backgroundColor: '#03A9F4',
+  backgroundColor: '#0075B2',
   padding: '2em',
   borderRadius: '10px'
 }
@@ -31,27 +31,29 @@ export default class CandidateView extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={12}>
-            <ul style={ulStyle}>
-              <CollapsibleItem
-                text={'Open Roles'}
-                roles={this.state.roles}
-                changeState={this.changeState}
-                filterFunction={(role) => !this.checkIfAppliedTo(role)}
-              />
-              <CollapsibleItem
-                text={'Applied To'}
-                roles={this.state.roles}
-                changeState={this.changeState}
-                filterFunction={(role) => this.checkIfAppliedTo(role)}
-              />
-              <RoleModal
-                changeState={this.changeState}
-                showModal={this.state.showModal}
-                currentRole={this.state.currentRole}
-              />
-            </ul>
-          </Col>
+          <div className='collapseBox'>
+            <Col md={12}>
+              <ul style={ulStyle}>
+                <CollapsibleItem
+                  text={'Open Roles'}
+                  roles={this.state.roles}
+                  changeState={this.changeState}
+                  filterFunction={(role) => !this.checkIfAppliedTo(role)}
+                />
+                <CollapsibleItem
+                  text={'Applied To'}
+                  roles={this.state.roles}
+                  changeState={this.changeState}
+                  filterFunction={(role) => this.checkIfAppliedTo(role)}
+                />
+                <RoleModal
+                  changeState={this.changeState}
+                  showModal={this.state.showModal}
+                  currentRole={this.state.currentRole}
+                />
+              </ul>
+            </Col>
+          </div>
         </Row>
       </Grid>
     )

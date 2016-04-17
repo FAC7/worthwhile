@@ -5,7 +5,7 @@ import CandidateProfileModal from '../../components/CandidateProfile/CandidatePr
 import {Grid, Row, Col} from 'react-bootstrap'
 
 const ulStyle = {
-  backgroundColor: '#03A9F4',
+  backgroundColor: '#0075B2',
   padding: '2em',
   borderRadius: '10px'
 }
@@ -23,33 +23,35 @@ export default class HostView extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={12}>
-            <ul style={ulStyle}>
-              <CollapsibleItem
-                text={'Applied'}
-                candidates={this.state.candidates}
-                changeState={this.changeState}
-                filterFunction={(candidate) => candidate}
-              />
-              <CollapsibleItem
-                text={'Interviewed'}
-                candidates={this.state.candidates}
-                changeState={this.changeState}
-                filterFunction={(candidate) => candidate}
-              />
-              <CollapsibleItem
-                text={'Accepted'}
-                candidates={this.state.candidates}
-                changeState={this.changeState}
-                filterFunction={(candidate) => candidate}
-              />
-              <CandidateProfileModal
-                changeState={this.changeState}
-                showModal={this.state.showModal}
-                currCandidate={this.state.currCandidate}
-              />
-            </ul>
-          </Col>
+          <div className='collapseBox'>
+            <Col md={12}>
+              <ul style={ulStyle}>
+                <CollapsibleItem
+                  text={'Applied'}
+                  candidates={this.state.candidates}
+                  changeState={this.changeState}
+                  filterFunction={(candidate) => candidate}
+                />
+                <CollapsibleItem
+                  text={'Interviewed'}
+                  candidates={this.state.candidates}
+                  changeState={this.changeState}
+                  filterFunction={(candidate) => candidate}
+                />
+                <CollapsibleItem
+                  text={'Accepted'}
+                  candidates={this.state.candidates}
+                  changeState={this.changeState}
+                  filterFunction={(candidate) => candidate}
+                />
+                <CandidateProfileModal
+                  changeState={this.changeState}
+                  showModal={this.state.showModal}
+                  currCandidate={this.state.currCandidate}
+                />
+              </ul>
+            </Col>
+          </div>
         </Row>
       </Grid>
     )

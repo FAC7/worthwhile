@@ -4,7 +4,7 @@ import {Well, Collapse} from 'react-bootstrap'
 
 const liStyle = {
   listStyleType: 'none',
-  color: 'dark-blue',
+  color: 'white',
   fontSize: '1.7em',
   textDecoration: 'none',
   cursor: 'pointer'
