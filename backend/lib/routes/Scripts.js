@@ -1,8 +1,8 @@
 export default {
   path: '/{filename}.js',
   method: 'GET',
-  handler: (response, reply) => {
-    const js = './public' + response.path
+  handler: (request, reply) => {
+    const js = './public' + request.path
     reply.file(js)
   }
 }

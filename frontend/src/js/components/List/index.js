@@ -9,10 +9,10 @@ export default (props) => {
   return (
     <li style={this.props.style}>
       {props.roles
-        ? props.roles.map(role => <HostListItem role={role} changeState={props.changeState} liStyle={liStyle}/>)
-        .filter(props.filterFunction)
-        : props.candidates.map(candidate => <CandidateListItem candidate={candidate} changeState={props.changeState} liStyle={liStyle} />)
-        .filter(props.filterFunction)
+        ? props.roles.filter(role => props.filterFunction(role))
+          .map(role => <HostListItem role={role} changeState={props.changeState} liStyle={liStyle}/>)
+        : props.candidates.filter(candidate => props.filterFunction(candidate))
+          .map(candidate => <CandidateListItem candidate={candidate} changeState={props.changeState} liStyle={liStyle} />)
       }
     </li>
   )
