@@ -1,6 +1,6 @@
 const candidates = [
   {
-    'candidateUUID': 'candidateUUID1',
+    'candidateUUID': '98',
     'name': 'Sam Package',
     'email': 'sam.package@welovepackages.com',
     'telephone': '07483849774',
@@ -40,7 +40,7 @@ const roles = [
     'roleTitle': 'Web Developer',
     'host': 'hostUUID',
     'description': 'You would be helping us make websites for people',
-    'applicants': ['candidateUUID1', 'candidateUUID3']
+    'applicants': ['98', 'candidateUUID2', 'candidateUUID3']
   }
 ]
 

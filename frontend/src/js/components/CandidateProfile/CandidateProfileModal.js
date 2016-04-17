@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Modal} from 'react-bootstrap'
+import {Button, Modal, Table} from 'react-bootstrap'
 
 const CandidateProfileModal = React.createClass({
   close () {
@@ -11,23 +11,44 @@ const CandidateProfileModal = React.createClass({
   },
 
   render () {
+    const info = this.props.currCandidate
+    console.log('current candidate', info)
     return (
       <div>
-
         <Modal show={this.props.showModal} onHide={this.close}>
-
           <Modal.Header closeButton>
-            <Modal.Title>{this.props.name}</Modal.Title>
+            <Modal.Title>{`${info.first_name} ${info.last_name}`}</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-
-            <p>email: {this.props.email} {this.props.telephone}</p>
-            <p>Telephone number: {this.props.telephone}</p>
-            <p>University: {this.props.University}</p>
-            <p>Degree: {this.props.Degree}</p>
-            <p>Click here to see the {this.props.name} CV: {this.props.resumeLink}</p>
-            <p>Description: {this.props.description}</p>
+            <Table>
+              <tbody>
+                <tr>
+                  <td>Qualification</td>
+                  <td>{`${info.qualification} in ${info.degree}`}</td>
+                </tr>
+                <tr>
+                  <td>Institution</td>
+                  <td>{info.institution}</td>
+                </tr>
+                <tr>
+                  <td>CV</td>
+                  <td><a target='_blank' href={info.cv_link}>Link</a></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{info.email}</td>
+                </tr>
+                <tr>
+                  <td>Telephone</td>
+                  <td>{info.telephone}</td>
+                </tr>
+                <tr>
+                  <td>Availability</td>
+                  <td>{info.availability}</td>
+                </tr>
+              </tbody>
+            </Table>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
@@ -42,23 +63,23 @@ const CandidateProfileModal = React.createClass({
 })
 
 CandidateProfileModal.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  email: React.PropTypes.string.isRequired,
-  telephone: React.PropTypes.string.isRequired,
-  University: React.PropTypes.string.isRequired,
-  Degree: React.PropTypes.string.isRequired,
-  resumeLink: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string.isRequired
+  currCandidate: React.PropTypes.object
 }
 
 CandidateProfileModal.defaultProps = {
-  name: 'Sam Package',
-  email: 'sam.package@welovepackages.com',
-  telephone: '07483849774',
-  University: 'Bristol',
-  Degree: 'Packages',
-  resumeLink: 'resume.com/resume.doc',
-  description: 'bla bla bla package bla'
+  currCandidate: {
+    uuid: '98',
+    first_name: 'Jon',
+    last_name: 'Whitehead',
+    email: 'jon.whitehead@studenthubs.org.uk',
+    institution: 'SOAS',
+    qualification: 'MA',
+    degree: 'Cultural Studies',
+    availability: 'September Onwards',
+    cv_link: 'https://storage.googleapis.com/k75m5pg17z/uf5qTvXLmA2D7J8oB',
+    telephone: '123456789',
+    status: 'applied'
+  }
 }
 
 export default CandidateProfileModal

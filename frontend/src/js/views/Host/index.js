@@ -10,14 +10,31 @@ const ulStyle = {
   borderRadius: '10px'
 }
 
+const loggedInRoleID = '2'
+
 export default class HostView extends Component {
   constructor () {
     super()
-    this.state = {candidates, showModal: false, currCandidate: null}
+    this.state = {candidates, showModal: false, loggedInRoleID}
     this.changeState = this.changeState.bind(this)
+    this.getState = this.getState.bind(this)
+  }
+  componentDidMount () {
+    let xhr = new XMLHttpRequest() // eslint-disable-line
+    xhr.onreadystatechange = () => {
+      if (xhr.status === 200 && xhr.readyState === 4) {
+        console.log('response', JSON.parse(xhr.responseText))
+        this.setState({candidates: JSON.parse(xhr.responseText)})
+      }
+    }
+    xhr.open('GET', `/getCandidatesByRole/${this.state.loggedInRoleID}`)
+    xhr.send()
   }
   changeState (state) {
     this.setState(state)
+  }
+  getState () {
+    return this.state
   }
   render () {
     return (
@@ -26,23 +43,26 @@ export default class HostView extends Component {
           <div className='collapseBox'>
             <Col md={12}>
               <ul style={ulStyle}>
-                <CollapsibleItem
+                <CollapsibleItem type={'candidates'}
                   text={'Applied'}
                   candidates={this.state.candidates}
                   changeState={this.changeState}
-                  filterFunction={(candidate) => candidate}
+                  getState={this.getState}
+                  filterFunction={candidate => candidate.status === 'applied'}
                 />
-                <CollapsibleItem
+                <CollapsibleItem type={'candidates'}
                   text={'Interviewed'}
                   candidates={this.state.candidates}
                   changeState={this.changeState}
-                  filterFunction={(candidate) => candidate}
+                  getState={this.getState}
+                  filterFunction={candidate => candidate.status === 'interviewed'}
                 />
-                <CollapsibleItem
+                <CollapsibleItem type={'candidates'}
                   text={'Accepted'}
                   candidates={this.state.candidates}
                   changeState={this.changeState}
-                  filterFunction={(candidate) => candidate}
+                  getState={this.getState}
+                  filterFunction={candidate => candidate.status === 'accepted'}
                 />
                 <CandidateProfileModal
                   changeState={this.changeState}
