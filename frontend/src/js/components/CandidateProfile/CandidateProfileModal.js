@@ -14,9 +14,7 @@ const CandidateProfileModal = React.createClass({
     const info = this.props.currCandidate
     return (
       <div>
-
         <Modal show={this.props.showModal} onHide={this.close}>
-
           <Modal.Header closeButton>
             <Modal.Title>{`${info.first_name} ${info.last_name}`}</Modal.Title>
           </Modal.Header>

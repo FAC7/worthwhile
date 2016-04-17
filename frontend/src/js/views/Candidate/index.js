@@ -2,21 +2,27 @@ import React, {Component} from 'react'
 import {candidates, roles} from '../../../../../database.js'
 import RoleModal from '../../components/RoleModal/role.js'
 import CollapsibleItem from '../../components/CollapsibleItem/index.js'
+import {Grid, Row, Col} from 'react-bootstrap'
 
 const loggedInCandidateID = '98'
+
+const ulStyle = {
+  backgroundColor: '#03A9F4',
+  padding: '2em',
+  borderRadius: '10px'
+}
 
 export default class CandidateView extends Component {
   constructor () {
     super()
-    this.state = {roles, candidates, showModal: false, currentRole: null, loggedInCandidateID}
+    this.state = {roles, candidates, showModal: false, loggedInCandidateID}
     this.changeState = this.changeState.bind(this)
-    this.checkIfAppliedTo = this.checkIfAppliedTo.bind(this)
   }
   componentDidMount () {
     let xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.onreadystatechange = () => {
-      console.log('sending request')
       if (xhr.status === 200 && xhr.readyState === 4) {
+        console.log('response', JSON.parse(xhr.responseText))
         this.setState({roles: JSON.parse(xhr.responseText)})
       }
     }
@@ -26,32 +32,33 @@ export default class CandidateView extends Component {
   changeState (state) {
     this.setState(state)
   }
-  checkIfAppliedTo (role) {
-    return role.applicants.filter((candidate) => {
-      return candidate === this.state.loggedInCandidateID
-    }).length > 0
-  }
   render () {
     return (
-      <div className='view'>
-        <CollapsibleItem
-          text={'Open Roles'}
-          roles={this.state.roles}
-          changeState={this.changeState}
-          filterFunction={role => !this.checkIfAppliedTo(role)}
-        />
-        <CollapsibleItem
-          text={'Applied To'}
-          roles={this.state.roles}
-          changeState={this.changeState}
-          filterFunction={role => this.checkIfAppliedTo(role)}
-        />
-        <RoleModal
-          changeState={this.changeState}
-          showModal={this.state.showModal}
-          currentRole={this.state.currentRole}
-        />
-      </div>
+      <Grid>
+        <Row>
+          <Col md={12}>
+            <ul style={ulStyle}>
+              <CollapsibleItem type={'roles'}
+                text={'Open Roles'}
+                roles={this.state.roles}
+                changeState={this.changeState}
+                filterFunction={(role) => role.status !== 'applied'}
+              />
+              <CollapsibleItem type={'roles'}
+                text={'Applied To'}
+                roles={this.state.roles}
+                changeState={this.changeState}
+                filterFunction={(role) => role.status === 'applied'}
+              />
+              <RoleModal
+                changeState={this.changeState}
+                showModal={this.state.showModal}
+                currentRole={this.state.currentRole}
+              />
+            </ul>
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }

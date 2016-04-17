@@ -2,6 +2,14 @@ import React, {Component} from 'react'
 import List from '../List'
 import {Well, Collapse} from 'react-bootstrap'
 
+const liStyle = {
+  listStyleType: 'none',
+  color: 'dark-blue',
+  fontSize: '1.7em',
+  textDecoration: 'none',
+  cursor: 'pointer'
+}
+
 export default class CollapsibleItem extends Component {
   constructor () {
     super()
@@ -9,21 +17,34 @@ export default class CollapsibleItem extends Component {
   }
   render () {
     return (
-      <div style={collapsibleStyle}>
-        <div onClick={() => this.setState({open: !this.state.open})}>{this.props.text}</div>
+      <div>
+        <a style={{textDecoration: 'none'}}>
+          <li
+            onClick={() => this.setState({open: !this.state.open})}
+            style={liStyle}
+          >
+            {this.props.text}
+          </li>
+        </a>
         <Collapse in={this.state.open}>
-          <Well>
-            {this.props.candidates
-              ? <List candidates={this.props.candidates}
+          <div>
+            <Well>
+              {this.props.type === 'candidates'
+              ? <List type={this.props.type}
+                candidates={this.props.candidates}
                 changeState={this.props.changeState}
+                getState={this.props.getState}
                 filterFunction={this.props.filterFunction}
               />
-              : <List roles={this.props.roles}
+              : <List type={this.props.type}
+                roles={this.props.roles}
                 changeState={this.props.changeState}
+                getState={this.props.getState}
                 filterFunction={this.props.filterFunction}
               />
             }
-          </Well>
+            </Well>
+          </div>
         </Collapse>
       </div>
     )
@@ -36,12 +57,4 @@ CollapsibleItem.propTypes = {
   roles: React.PropTypes.array,
   changeState: React.PropTypes.func,
   filterFunction: React.PropTypes.func
-}
-
-const collapsibleStyle = {
-  backgroundColor: '#0075b2',
-  width: '90%',
-  margin: '5vh auto 2vh auto',
-  height: '8vh',
-  paddingBottom: '8px'
 }

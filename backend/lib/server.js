@@ -17,10 +17,12 @@ import Scripts from './routes/Scripts.js'
 import GetAllRoles from './routes/GetAllRoles.js'
 import GetCandidatesByRole from './routes/GetCandidatesByRole.js'
 import GetRolesByCandidate from './routes/GetRolesByCandidate.js'
+import UpdateCandidateProgress from './routes/updateCandidateProgress.js'
+import ApplyForRole from './routes/applyForRole.js'
 
 const ConnectionSettings = { port, routes: {cors: true} }
 const Plugins = [ Inert ]
-const Routes = [ GetRolesByCandidate, GetCandidatesByRole, GetAllRoles, Images, ReactUrls, Scripts ]
+const Routes = [ ApplyForRole, UpdateCandidateProgress, GetRolesByCandidate, GetCandidatesByRole, GetAllRoles, Images, ReactUrls, Scripts ]
 
 server.connection(ConnectionSettings)
 server.register(Plugins, handlePlugins)

@@ -6,10 +6,6 @@ const Role = React.createClass({
     this.props.changeState({ showModal: false })
   },
 
-  open () {
-    this.props.changeState({ showModal: true })
-  },
-
   render () {
     return (
       <div>
@@ -49,4 +45,3 @@ Role.defaultProps = {
 }
 
 export default Role
-

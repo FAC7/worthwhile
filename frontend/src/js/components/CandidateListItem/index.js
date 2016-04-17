@@ -8,7 +8,10 @@ export default (props) => {
       currCandidate: candidate
     })
   }
+  const name = `${props.candidate.first_name} ${props.candidate.last_name}`
   return (
-    <li style={props.liStyle}>{props.candidate.name} <Button bsStyle='primary' onClick={() => {seeMore(props.candidate) }}>SEE MORE</Button></li>
+    <li style={props.liStyle}>
+      {name} <Button bsStyle='primary' onClick={() => {seeMore(props.candidate) }}>SEE MORE</Button>
+    </li>
   )
 }
