@@ -42,8 +42,36 @@ const getRolesByCandidate = (candidateID, cb) => {
   })
 }
 
+const updateCandidateProgress = (candidateID, roleID, status, cb) => {
+  pg.connect(connectionString, (err, client, done) => {
+    if (err) throw err
+    client.query('UPDATE matched_roles ' +
+                'SET status=$1 ' +
+                'WHERE "roleID"=$2 ' +
+                'AND "candidateID"=$3', [status, roleID, candidateID], (err, result) => {
+      if (err) throw err
+      cb('success')
+      done()
+    })
+  })
+}
+
+const applyForRole = (candidateID, roleID, cb) => {
+  pg.connect(connectionString, (err, client, done) => {
+    if (err) throw err
+    client.query('INSERT INTO matched_roles ' +
+      'VALUES ($1, $2, \'applied\')', [roleID, candidateID], (err, result) => {
+        if (err) throw err
+        cb('success')
+        done()
+      })
+  })
+}
+
 module.exports = {
   getAllRoles,
   getCandidatesByRole,
-  getRolesByCandidate
+  getRolesByCandidate,
+  updateCandidateProgress,
+  applyForRole
 }
