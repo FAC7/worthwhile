@@ -7,7 +7,7 @@ import {Grid, Row, Col} from 'react-bootstrap'
 const loggedInCandidateID = '98'
 
 const ulStyle = {
-  backgroundColor: '#03A9F4',
+  backgroundColor: '#0075B2',
   padding: '2em',
   borderRadius: '10px'
 }
@@ -17,6 +17,7 @@ export default class CandidateView extends Component {
     super()
     this.state = {roles, candidates, showModal: false, loggedInCandidateID}
     this.changeState = this.changeState.bind(this)
+    this.getState = this.getState.bind(this)
   }
   componentDidMount () {
     let xhr = new XMLHttpRequest() // eslint-disable-line
@@ -32,31 +33,38 @@ export default class CandidateView extends Component {
   changeState (state) {
     this.setState(state)
   }
+  getState () {
+    return this.state
+  }
   render () {
     return (
       <Grid>
         <Row>
-          <Col md={12}>
-            <ul style={ulStyle}>
-              <CollapsibleItem type={'roles'}
-                text={'Open Roles'}
-                roles={this.state.roles}
-                changeState={this.changeState}
-                filterFunction={(role) => role.status !== 'applied'}
-              />
-              <CollapsibleItem type={'roles'}
-                text={'Applied To'}
-                roles={this.state.roles}
-                changeState={this.changeState}
-                filterFunction={(role) => role.status === 'applied'}
-              />
-              <RoleModal
-                changeState={this.changeState}
-                showModal={this.state.showModal}
-                currentRole={this.state.currentRole}
-              />
-            </ul>
-          </Col>
+          <div className='collapseBox'>
+            <Col md={12}>
+              <ul style={ulStyle}>
+                <CollapsibleItem type={'roles'}
+                  text={'Open Roles'}
+                  roles={this.state.roles}
+                  changeState={this.changeState}
+                  getState={this.getState}
+                  filterFunction={(role) => role.status !== 'applied'}
+                />
+                <CollapsibleItem type={'roles'}
+                  text={'Applied To'}
+                  roles={this.state.roles}
+                  changeState={this.changeState}
+                  getState={this.getState}
+                  filterFunction={(role) => role.status === 'applied'}
+                />
+                <RoleModal
+                  changeState={this.changeState}
+                  showModal={this.state.showModal}
+                  currentRole={this.state.currentRole}
+                />
+              </ul>
+            </Col>
+          </div>
         </Row>
       </Grid>
     )

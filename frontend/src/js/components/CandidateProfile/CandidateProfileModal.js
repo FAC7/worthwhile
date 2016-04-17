@@ -12,6 +12,7 @@ const CandidateProfileModal = React.createClass({
 
   render () {
     const info = this.props.currCandidate
+    console.log('current candidate', info)
     return (
       <div>
         <Modal show={this.props.showModal} onHide={this.close}>
@@ -21,30 +22,32 @@ const CandidateProfileModal = React.createClass({
 
           <Modal.Body>
             <Table>
-              <tr>
-                <td>Qualification</td>
-                <td>{`${info.qualification} in ${info.degree}`}</td>
-              </tr>
-              <tr>
-                <td>Institution</td>
-                <td>{`${info.institution}`}</td>
-              </tr>
-              <tr>
-                <td>CV</td>
-                <td><a target='_blank' href={`${info.cv_link}`}>Link</a></td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>{info.email}</td>
-              </tr>
-              <tr>
-                <td>Telephone</td>
-                <td>{`${info.telephone}`}</td>
-              </tr>
-              <tr>
-                <td>Availability</td>
-                <td>{`${info.availability}`}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>Qualification</td>
+                  <td>{`${info.qualification} in ${info.degree}`}</td>
+                </tr>
+                <tr>
+                  <td>Institution</td>
+                  <td>{info.institution}</td>
+                </tr>
+                <tr>
+                  <td>CV</td>
+                  <td><a target='_blank' href={info.cv_link}>Link</a></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{info.email}</td>
+                </tr>
+                <tr>
+                  <td>Telephone</td>
+                  <td>{info.telephone}</td>
+                </tr>
+                <tr>
+                  <td>Availability</td>
+                  <td>{info.availability}</td>
+                </tr>
+              </tbody>
             </Table>
           </Modal.Body>
           <Modal.Footer>

@@ -1,7 +1,6 @@
 import React from 'react'
 import HostListItem from '../HostListItem'
 import CandidateListItem from '../CandidateListItem'
-import { Button } from 'react-bootstrap'
 
 export default (props) => {
   return (
@@ -17,7 +16,6 @@ export default (props) => {
 }
 
 const ulStyle = {
-  backgroundColor: '#03A9F4',
   padding: '2em',
   borderRadius: '10px',
   color: 'white',
@@ -26,7 +24,7 @@ const ulStyle = {
 
 const liStyle = {
   listStyleType: 'none',
-  color: 'white',
+  color: 'black',
   fontSize: '1.7em',
   textDecoration: 'none',
   cursor: 'pointer'

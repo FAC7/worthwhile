@@ -4,7 +4,7 @@ import {Well, Collapse} from 'react-bootstrap'
 
 const liStyle = {
   listStyleType: 'none',
-  color: 'dark-blue',
+  color: 'white',
   fontSize: '1.7em',
   textDecoration: 'none',
   cursor: 'pointer'
@@ -53,8 +53,10 @@ export default class CollapsibleItem extends Component {
 
 CollapsibleItem.propTypes = {
   text: React.PropTypes.string,
+  type: React.PropTypes.string,
   candidates: React.PropTypes.array,
   roles: React.PropTypes.array,
   changeState: React.PropTypes.func,
+  getState: React.PropTypes.func,
   filterFunction: React.PropTypes.func
 }

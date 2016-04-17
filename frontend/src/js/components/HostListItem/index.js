@@ -5,7 +5,7 @@ export default (props) => {
   const seeMore = (role) => {
     props.changeState({
       showModal: true,
-      currRole: props.role
+      currRole: role
     })
   }
   return (
