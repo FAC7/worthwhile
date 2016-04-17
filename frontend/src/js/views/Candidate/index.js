@@ -7,7 +7,7 @@ import {Grid, Row, Col} from 'react-bootstrap'
 const loggedInCandidateID = 'candidateUUID1'
 
 const ulStyle = {
-  backgroundColor: '#03A9F4',
+  backgroundColor: '#0075B2',
   padding: '2em',
   borderRadius: '10px'
 }
